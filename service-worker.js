@@ -1,0 +1,4 @@
+const CACHE_NAME="limba-site-v1";const ASSETS=["./","./index.html","./styles.css","./app.js","./manifest.webmanifest","./og-image.png","./assets/icon-192.png","./assets/icon-512.png","./assets/Limba_Software_Engineer_Resume.docx"];
+self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(ASSETS)));self.skipWaiting()});
+self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.map(k=>k!==CACHE_NAME?caches.delete(k):null))));self.clients.claim()});
+self.addEventListener("fetch",e=>{const u=new URL(e.request.url);if(u.origin===location.origin){e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(x=>{if(e.request.method==="GET"){const cp=x.clone();caches.open(CACHE_NAME).then(c=>c.put(e.request,cp))}return x}).catch(()=>caches.match("./index.html"))))}});

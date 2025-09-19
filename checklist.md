@@ -1,0 +1,1 @@
+Run Lighthouse (Desktop & Mobile) >=95. Test keyboard navigation, offline cache, print, vCard import, and mailto fallback.
